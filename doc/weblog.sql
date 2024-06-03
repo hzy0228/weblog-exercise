@@ -11,11 +11,33 @@
  Target Server Version : 80037 (8.0.37)
  File Encoding         : 65001
 
- Date: 02/06/2024 23:50:51
+ Date: 04/06/2024 00:24:29
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_category
+-- ----------------------------
+DROP TABLE IF EXISTS `t_category`;
+CREATE TABLE `t_category`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '分类id',
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '分类名称',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
+  `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '逻辑删除标志位：0：未删除 1：已删除',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uk_name`(`name` ASC) USING BTREE,
+  INDEX `idx_create_time`(`create_time` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章分类表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of t_category
+-- ----------------------------
+INSERT INTO `t_category` VALUES (1, '测试数据', '2024-06-03 22:59:13', '2024-06-03 22:59:13', 0);
+INSERT INTO `t_category` VALUES (3, 'java', '2024-06-03 23:09:16', '2024-06-03 23:09:16', 0);
+INSERT INTO `t_category` VALUES (4, 'python', '2024-06-03 23:09:50', '2024-06-03 23:09:50', 0);
 
 -- ----------------------------
 -- Table structure for t_user
