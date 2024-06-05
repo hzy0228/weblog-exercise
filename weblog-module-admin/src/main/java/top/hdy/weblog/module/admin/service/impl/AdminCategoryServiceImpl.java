@@ -16,6 +16,7 @@ import top.hdy.weblog.module.common.domain.dos.CategoryDO;
 import top.hdy.weblog.module.common.domain.mapper.CategoryMapper;
 import top.hdy.weblog.module.common.enums.ResponseCodeEnum;
 import top.hdy.weblog.module.common.exception.BizException;
+import top.hdy.weblog.module.common.model.vo.SelectRspVO;
 import top.hdy.weblog.module.common.utils.PageResponse;
 import top.hdy.weblog.module.common.utils.Response;
 
@@ -110,6 +111,18 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         categoryMapper.deleteById(categoryId);
 
         return Response.success();
+    }
+
+    @Override
+    public Response findCategorySelectList() {
+        List<CategoryDO> categoryDOS = categoryMapper.selectList(null);
+
+        List<SelectRspVO> selectRspVOS = null;
+
+        if (!CollectionUtils.isEmpty(categoryDOS)) {
+            selectRspVOS = categoryDOS.stream().map(categoryDO -> SelectRspVO.builder().label(categoryDO.getName()).value(categoryDO.getId()).build()).collect(Collectors.toList());
+        }
+        return Response.success(selectRspVOS);
     }
 }
 
