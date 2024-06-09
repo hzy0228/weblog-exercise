@@ -39,8 +39,8 @@ public class AdminCategoryController {
     @PostMapping("/category/list")
     @ApiOperation(value = "分类分页数据获取")
     @ApiOperationLog(description = "分类分页数据获取")
-    public PageResponse findCategoryList(@RequestBody @Validated FindCategoryPageListReqVO findCategoryPageListReqVO) {
-        return adminCategoryService.findCategoryList(findCategoryPageListReqVO);
+    public PageResponse findCategoryPageList(@RequestBody @Validated FindCategoryPageListReqVO findCategoryPageListReqVO) {
+        return adminCategoryService.findCategoryPageList(findCategoryPageListReqVO);
     }
 
     @PostMapping("/category/delete")
