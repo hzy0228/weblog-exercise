@@ -1,4 +1,4 @@
-package top.hdy.weblog.web.config;
+package top.hdy.weblog.module.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,24 +12,25 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
- * @Author: Hao-ZY
- * @Date: 2024/5/8 22:42
+ * @author: 犬小哈
+ * @url: www.quanxiaoha.com
+ * @date: 2023-08-16 7:53
+ * @description: Knife4j 配置
  **/
 @Configuration
 @EnableSwagger2WebMvc
 @Profile("dev") // 只在 dev 环境中开启
-public class Knife4jConfig {
+public class Knife4jAdminConfig {
 
-
-    @Bean("webApi")
+    @Bean("adminApi")
     public Docket createApiDoc() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(buildApiInfo())
                 // 分组名称
-                .groupName("Web 前台接口")
+                .groupName("Admin 后台接口")
                 .select()
                 // 这里指定 Controller 扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("top.hdy.weblog.web.controller"))
+                .apis(RequestHandlerSelectors.basePackage("top.hdy.weblog.module.admin.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
