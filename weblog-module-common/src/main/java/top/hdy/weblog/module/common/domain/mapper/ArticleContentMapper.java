@@ -34,4 +34,11 @@ public interface ArticleContentMapper extends BaseMapper<ArticleContentDO> {
         return selectOne(Wrappers.<ArticleContentDO>lambdaQuery()
                 .eq(ArticleContentDO::getArticleId, articleId));
     }
+
+
+    default int updateByArticleId(ArticleContentDO articleContentDO) {
+        return update(articleContentDO,
+                Wrappers.<ArticleContentDO>lambdaUpdate()
+                        .eq(ArticleContentDO::getArticleId, articleContentDO.getArticleId()));
+    }
 }

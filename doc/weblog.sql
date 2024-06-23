@@ -11,7 +11,7 @@
  Target Server Version : 80037 (8.0.37)
  File Encoding         : 65001
 
- Date: 20/06/2024 00:17:34
+ Date: 24/06/2024 00:33:25
 */
 
 SET NAMES utf8mb4;
@@ -37,10 +37,9 @@ CREATE TABLE `t_article`  (
 -- ----------------------------
 -- Records of t_article
 -- ----------------------------
-INSERT INTO `t_article` VALUES (1, '测试标题', 'https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg', '测试摘要', '2024-06-15 00:29:09', '2024-06-15 00:29:09', 0, 1);
+INSERT INTO `t_article` VALUES (1, 'test', 'https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg', '', '2024-06-15 00:29:09', '2024-06-23 23:51:50', 0, 1);
 INSERT INTO `t_article` VALUES (3, '测试标题', 'https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg', '测试摘要', '2024-06-19 22:00:21', '2024-06-19 22:00:21', 0, 1);
 INSERT INTO `t_article` VALUES (5, '测试标题', 'https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg', '测试摘要', '2024-06-19 22:04:13', '2024-06-19 22:04:13', 0, 1);
-INSERT INTO `t_article` VALUES (8, '测试标题', 'https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg', '测试摘要', '2024-06-19 22:07:57', '2024-06-19 22:07:57', 0, 1);
 
 -- ----------------------------
 -- Table structure for t_article_category_rel
@@ -53,15 +52,14 @@ CREATE TABLE `t_article_category_rel`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uni_article_id`(`article_id` ASC) USING BTREE,
   INDEX `idx_category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章所属分类关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章所属分类关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_article_category_rel
 -- ----------------------------
-INSERT INTO `t_article_category_rel` VALUES (1, 1, 1);
 INSERT INTO `t_article_category_rel` VALUES (3, 3, 6);
 INSERT INTO `t_article_category_rel` VALUES (5, 5, 6);
-INSERT INTO `t_article_category_rel` VALUES (8, 8, 6);
+INSERT INTO `t_article_category_rel` VALUES (10, 1, 1);
 
 -- ----------------------------
 -- Table structure for t_article_content
@@ -78,10 +76,9 @@ CREATE TABLE `t_article_content`  (
 -- ----------------------------
 -- Records of t_article_content
 -- ----------------------------
-INSERT INTO `t_article_content` VALUES (1, 1, '内容');
+INSERT INTO `t_article_content` VALUES (1, 1, 'test');
 INSERT INTO `t_article_content` VALUES (3, 3, '内容');
 INSERT INTO `t_article_content` VALUES (5, 5, '内容');
-INSERT INTO `t_article_content` VALUES (8, 8, '内容');
 
 -- ----------------------------
 -- Table structure for t_article_tag_rel
@@ -94,7 +91,7 @@ CREATE TABLE `t_article_tag_rel`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_article_id`(`article_id` ASC) USING BTREE,
   INDEX `idx_tag_id`(`tag_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章对应标签关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章对应标签关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_article_tag_rel
@@ -103,10 +100,7 @@ INSERT INTO `t_article_tag_rel` VALUES (1, 3, 27);
 INSERT INTO `t_article_tag_rel` VALUES (2, 3, 28);
 INSERT INTO `t_article_tag_rel` VALUES (3, 5, 29);
 INSERT INTO `t_article_tag_rel` VALUES (4, 5, 30);
-INSERT INTO `t_article_tag_rel` VALUES (5, 8, 29);
-INSERT INTO `t_article_tag_rel` VALUES (6, 8, 30);
-INSERT INTO `t_article_tag_rel` VALUES (7, 8, 31);
-INSERT INTO `t_article_tag_rel` VALUES (8, 8, 32);
+INSERT INTO `t_article_tag_rel` VALUES (11, 1, 33);
 
 -- ----------------------------
 -- Table structure for t_blog_settings
@@ -169,7 +163,7 @@ CREATE TABLE `t_tag`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_name`(`name` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章标签表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章标签表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_tag
@@ -184,6 +178,7 @@ INSERT INTO `t_tag` VALUES (29, '8', '2024-06-19 22:04:13', '2024-06-19 22:04:13
 INSERT INTO `t_tag` VALUES (30, '9', '2024-06-19 22:04:13', '2024-06-19 22:04:13', 0);
 INSERT INTO `t_tag` VALUES (31, '新的标签3', '2024-06-19 22:07:57', '2024-06-19 22:07:57', 0);
 INSERT INTO `t_tag` VALUES (32, '新的标签4', '2024-06-19 22:07:57', '2024-06-19 22:07:57', 0);
+INSERT INTO `t_tag` VALUES (33, '标签3', '2024-06-23 23:51:50', '2024-06-23 23:51:50', 0);
 
 -- ----------------------------
 -- Table structure for t_user

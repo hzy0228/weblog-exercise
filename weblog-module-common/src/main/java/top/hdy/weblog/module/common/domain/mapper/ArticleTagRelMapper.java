@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import top.hdy.weblog.module.common.config.InsertBatchMapper;
 import top.hdy.weblog.module.common.domain.dos.ArticleTagRelDO;
 
+import java.util.List;
+
 /**
  * @Author: Hao-ZY
  * @Date: 2024/6/14 22:29
@@ -30,8 +32,8 @@ public interface ArticleTagRelMapper extends InsertBatchMapper<ArticleTagRelDO> 
      * @param articleId
      * @return
      */
-    default ArticleTagRelDO selectByArticleId(Long articleId) {
-        return selectOne(Wrappers.<ArticleTagRelDO>lambdaQuery()
+    default List<ArticleTagRelDO> selectByArticleId(Long articleId) {
+        return selectList(Wrappers.<ArticleTagRelDO>lambdaQuery()
                 .eq(ArticleTagRelDO::getArticleId, articleId));
     }
 }

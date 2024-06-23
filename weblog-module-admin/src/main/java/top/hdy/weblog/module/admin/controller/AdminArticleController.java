@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.hdy.weblog.module.admin.model.vo.article.DeleteArticleReqVO;
-import top.hdy.weblog.module.admin.model.vo.article.FindArticlePageListReqVO;
-import top.hdy.weblog.module.admin.model.vo.article.PublishArticleReqVO;
+import top.hdy.weblog.module.admin.model.vo.article.*;
 import top.hdy.weblog.module.admin.service.AdminArticleService;
 import top.hdy.weblog.module.common.aspect.ApiOperationLog;
 import top.hdy.weblog.module.common.utils.Response;
@@ -52,4 +50,18 @@ public class AdminArticleController {
         return adminArticleService.findArticlePageList(findArticlePageListReqVO);
     }
 
+    @PostMapping("/detail")
+    @ApiOperation(value = "查询文章详情")
+    @ApiOperationLog(description = "查询文章详情")
+    public Response findArticleDetail(@RequestBody @Validated FindArticleDetailReqVO findArticlePageListReqVO) {
+        return adminArticleService.findArticleDetail(findArticlePageListReqVO);
+    }
+
+    @PostMapping("/update")
+    @ApiOperation(value = "更新文章")
+    @ApiOperationLog(description = "更新文章")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Response updateArticle(@RequestBody @Validated UpdateArticleReqVO updateArticleReqVO) {
+        return adminArticleService.updateArticle(updateArticleReqVO);
+    }
 }

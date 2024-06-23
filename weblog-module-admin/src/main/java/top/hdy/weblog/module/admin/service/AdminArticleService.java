@@ -1,8 +1,6 @@
 package top.hdy.weblog.module.admin.service;
 
-import top.hdy.weblog.module.admin.model.vo.article.DeleteArticleReqVO;
-import top.hdy.weblog.module.admin.model.vo.article.FindArticlePageListReqVO;
-import top.hdy.weblog.module.admin.model.vo.article.PublishArticleReqVO;
+import top.hdy.weblog.module.admin.model.vo.article.*;
 import top.hdy.weblog.module.common.utils.Response;
 
 /**
@@ -31,8 +29,26 @@ public interface AdminArticleService {
 
     /**
      * 查询文章分页数据
+     *
      * @param findArticlePageListReqVO
      * @return
      */
     Response findArticlePageList(FindArticlePageListReqVO findArticlePageListReqVO);
+
+
+    /**
+     * 查询文章详情
+     *
+     * @param findArticleDetailReqVO
+     * @return
+     */
+    Response findArticleDetail(FindArticleDetailReqVO findArticleDetailReqVO);
+
+    /**
+     * 更新文章
+     *
+     * @param updateArticleReqVO
+     * @return
+     */
+    Response updateArticle(UpdateArticleReqVO updateArticleReqVO);
 }
