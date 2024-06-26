@@ -1,5 +1,6 @@
 package top.hdy.weblog.module.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -134,6 +135,30 @@ public class AdminTagServiceImpl extends ServiceImpl<TagMapper, TagDO> implement
                             .build())
                     .collect(Collectors.toList());
         }
+        return Response.success(vos);
+    }
+
+    /**
+     * 获取文章标签的 Select 列表数据
+     *
+     * @return
+     */
+    @Override
+    public Response findTagSelectList() {
+        // 查询所有标签, Wrappers.emptyWrapper() 表示查询条件为空
+        List<TagDO> tagDOS = tagMapper.selectList(Wrappers.emptyWrapper());
+
+        // DO 转 VO
+        List<SelectRspVO> vos = null;
+        if (!CollectionUtils.isEmpty(tagDOS)) {
+            vos = tagDOS.stream()
+                    .map(tagDO -> SelectRspVO.builder()
+                            .label(tagDO.getName())
+                            .value(tagDO.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
         return Response.success(vos);
     }
 }

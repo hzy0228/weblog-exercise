@@ -57,4 +57,11 @@ public class AdminTagController {
     public Response searchTag(@RequestBody @Validated SearchTagReqVO searchTagReqVO) {
         return adminTagService.searchTag(searchTagReqVO);
     }
+
+    @PostMapping("/tag/select/list")
+    @ApiOperation(value = "标签 Select 下拉列表数据获取")
+    @ApiOperationLog(description = "标签 Select 下拉列表数据获取")
+    public Response findTagSelectList() {
+        return adminTagService.findTagSelectList();
+    }
 }
